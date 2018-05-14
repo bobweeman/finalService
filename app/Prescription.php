@@ -3,8 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Prescription extends Model
 {
     //
+    use SoftDeletes;
+
+
+//    relationships
+    public function details(){
+        return $this->hasOne(PrescriptionDetail::class);
+    }
 }

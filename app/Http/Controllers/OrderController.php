@@ -17,8 +17,8 @@ class OrderController extends Controller
     public function index()
     {
         //
-        $owner_id = Pharmacy::where('owner_id',Auth::user()->id)->get(['id']);
-        $orders = Order::with('buyer','doctor','drug')->where('pharmacy_id',$owner_id)->latest()->get();
+
+        $orders = Order::with('buyer','doctor','drug')->latest()->get();
         return response(compact('orders'),200);
     }
 

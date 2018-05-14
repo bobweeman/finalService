@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->integer('doctor_id')->unsigned();
             $table->integer('drug_id')->unsigned();
             $table->integer('quantity')->unsigned();
+            $table->integer('pharmacy_id')->unsigned();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -26,6 +27,7 @@ class CreateOrdersTable extends Migration
             $table->foreign('buyer_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('doctor_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('drug_id')->references('id')->on('drugs')->onDelete('cascade');
+            $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
 
         });
     }

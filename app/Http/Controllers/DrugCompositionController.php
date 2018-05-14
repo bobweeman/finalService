@@ -15,6 +15,8 @@ class DrugCompositionController extends Controller
     public function index()
     {
         //
+        $drug_composition = DrugComposition::withCount('drugs')->orderBy('name','asc')->get();
+        return response(compact('drug_composition'),200);
     }
 
     /**
@@ -36,6 +38,9 @@ class DrugCompositionController extends Controller
     public function store(Request $request)
     {
         //
+        DrugComposition::create($request->all());
+        $message="Drug Composition created successfully";
+        return response(compact('message'),200);
     }
 
     /**
@@ -47,6 +52,8 @@ class DrugCompositionController extends Controller
     public function show(DrugComposition $drugComposition)
     {
         //
+        return response(compact('drugComposition'),200);
+
     }
 
     /**
@@ -58,6 +65,8 @@ class DrugCompositionController extends Controller
     public function edit(DrugComposition $drugComposition)
     {
         //
+        return response(compact('drugComposition'),200);
+
     }
 
     /**
@@ -70,6 +79,9 @@ class DrugCompositionController extends Controller
     public function update(Request $request, DrugComposition $drugComposition)
     {
         //
+        $drugComposition->update($request->all());
+        $message="Drug Composition updated successfully";
+        return response(compact('message'),200);
     }
 
     /**
@@ -81,5 +93,8 @@ class DrugCompositionController extends Controller
     public function destroy(DrugComposition $drugComposition)
     {
         //
+        $drugComposition->delete();
+        $message="Drug Composition deleted successfully";
+        return response(compact('message'),200);
     }
 }

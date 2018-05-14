@@ -15,6 +15,8 @@ class DrugCategoryController extends Controller
     public function index()
     {
         //
+        $drug_category = DrugCategory::withCount('drugs')->orderBy('name','asc')->get();
+        return response(compact('drug_category'),200);
     }
 
     /**
@@ -36,6 +38,10 @@ class DrugCategoryController extends Controller
     public function store(Request $request)
     {
         //
+        DrugCategory::create($request->all());
+        $message="Drug Category created successfully";
+        return response(compact('message'),200);
+
     }
 
     /**
@@ -47,6 +53,8 @@ class DrugCategoryController extends Controller
     public function show(DrugCategory $drugCategory)
     {
         //
+
+        return response(compact('drugCategory'),200);
     }
 
     /**
@@ -58,6 +66,7 @@ class DrugCategoryController extends Controller
     public function edit(DrugCategory $drugCategory)
     {
         //
+        return response(compact('drugCategory'),200);
     }
 
     /**
@@ -70,6 +79,10 @@ class DrugCategoryController extends Controller
     public function update(Request $request, DrugCategory $drugCategory)
     {
         //
+        $drugCategory->update($request->all());
+        $message="Drug Category updated successfully";
+        return response(compact('message'),200);
+
     }
 
     /**
@@ -81,5 +94,8 @@ class DrugCategoryController extends Controller
     public function destroy(DrugCategory $drugCategory)
     {
         //
+        $drugCategory->delete();
+        $message="Drug Category deleted successfully";
+        return response(compact('message'),200);
     }
 }

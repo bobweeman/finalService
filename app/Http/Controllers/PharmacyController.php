@@ -15,6 +15,8 @@ class PharmacyController extends Controller
     public function index()
     {
         //
+        $pharmacies = Pharmacy::with('owners')->orderBy('name','asc')->get();
+        return response(compact('pharmacies'),200);
     }
 
     /**
@@ -36,6 +38,10 @@ class PharmacyController extends Controller
     public function store(Request $request)
     {
         //
+        Pharmacy::create($request->all());
+        $message='Pharmacy created successfully';
+        return response(compact('message'),200);
+
     }
 
     /**
@@ -47,6 +53,8 @@ class PharmacyController extends Controller
     public function show(Pharmacy $pharmacy)
     {
         //
+
+        return response(compact('pharmacy'));
     }
 
     /**
@@ -58,6 +66,7 @@ class PharmacyController extends Controller
     public function edit(Pharmacy $pharmacy)
     {
         //
+        return response(compact('pharmacy'));
     }
 
     /**
@@ -70,6 +79,9 @@ class PharmacyController extends Controller
     public function update(Request $request, Pharmacy $pharmacy)
     {
         //
+        $pharmacy->update($request->all());
+        $message='Pharmacy updated successfully';
+        return response(compact('message'),200);
     }
 
     /**
@@ -81,5 +93,8 @@ class PharmacyController extends Controller
     public function destroy(Pharmacy $pharmacy)
     {
         //
+        $pharmacy->delete();
+        $message='Pharmacy deleted successfully';
+        return response(compact('message'),200);
     }
 }

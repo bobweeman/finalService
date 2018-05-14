@@ -15,6 +15,9 @@ class PrescriptionDetailController extends Controller
     public function index()
     {
         //
+        $prescription_details = PrescriptionDetail::latest()->get();
+        return response(compact('prescription_details'),200);
+
     }
 
     /**
@@ -36,6 +39,9 @@ class PrescriptionDetailController extends Controller
     public function store(Request $request)
     {
         //
+        PrescriptionDetail::create($request->all());
+        $message="Prescription created successfully";
+        return response(compact('message'),200);
     }
 
     /**
@@ -47,6 +53,8 @@ class PrescriptionDetailController extends Controller
     public function show(PrescriptionDetail $prescriptionDetail)
     {
         //
+        return response(compact('prescriptionDetail'),200);
+
     }
 
     /**
@@ -58,6 +66,8 @@ class PrescriptionDetailController extends Controller
     public function edit(PrescriptionDetail $prescriptionDetail)
     {
         //
+        return response(compact('prescriptionDetail'),200);
+
     }
 
     /**
@@ -70,6 +80,9 @@ class PrescriptionDetailController extends Controller
     public function update(Request $request, PrescriptionDetail $prescriptionDetail)
     {
         //
+        $prescriptionDetail->update($request->all());
+        $message = "Prescription is update successfully";
+        return response(compact('message'),200);
     }
 
     /**
@@ -81,5 +94,8 @@ class PrescriptionDetailController extends Controller
     public function destroy(PrescriptionDetail $prescriptionDetail)
     {
         //
+        $prescriptionDetail->delete();
+        $message = "Prescription is deleted successfully";
+        return response(compact('message'),200);
     }
 }

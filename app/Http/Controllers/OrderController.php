@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Pharmacy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -15,6 +17,9 @@ class OrderController extends Controller
     public function index()
     {
         //
+        $owner_id = Pharmacy::where('owner_id',Auth::user()->id)->get(['id']);
+        $orders = Order::with('buyer','doctor','drug')->where('pharmacy_id',$owner_id)->latest()->get();
+        return response(compact('orders'),200);
     }
 
     /**
@@ -36,6 +41,9 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         //
+        Order::create($request->all());
+        $message="Order created successfully";
+        return response(compact('message'),200);
     }
 
     /**
@@ -47,6 +55,8 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         //
+        return response(compact('order'),200);
+
     }
 
     /**
@@ -58,6 +68,8 @@ class OrderController extends Controller
     public function edit(Order $order)
     {
         //
+        return response(compact('order'),200);
+
     }
 
     /**
@@ -70,6 +82,9 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
         //
+        $order->update($request->all());
+        $message="Order updated successfully";
+        return response(compact('message'),200);
     }
 
     /**
@@ -81,5 +96,8 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+        $order->delete();
+        $message="Order deleted successfully";
+        return response(compact('message'),200);
     }
 }

@@ -15,6 +15,8 @@ class PrescriptionController extends Controller
     public function index()
     {
         //
+        $prescriptions = Prescription::withCount('details')->latest()->get();
+        return response(compact('prescriptions'),200);
     }
 
     /**
@@ -36,6 +38,9 @@ class PrescriptionController extends Controller
     public function store(Request $request)
     {
         //
+        Prescription::create($request->all());
+        $message='Prescription created successfully';
+        return response(compact('message'),200);
     }
 
     /**
@@ -44,9 +49,12 @@ class PrescriptionController extends Controller
      * @param  \App\Prescription  $prescription
      * @return \Illuminate\Http\Response
      */
-    public function show(Prescription $prescription)
+    public function show($id)
     {
         //
+        $prescription=Prescription::with('details')->where('id',$id)->get();
+        return response(compact('prescription'),200);
+
     }
 
     /**
@@ -58,6 +66,8 @@ class PrescriptionController extends Controller
     public function edit(Prescription $prescription)
     {
         //
+        return response(compact('prescription'),200);
+
     }
 
     /**
@@ -70,6 +80,10 @@ class PrescriptionController extends Controller
     public function update(Request $request, Prescription $prescription)
     {
         //
+        $prescription->update($request->all());
+        $message='Prescription updated successfully';
+        return response(compact('message'),200);
+
     }
 
     /**
@@ -81,5 +95,8 @@ class PrescriptionController extends Controller
     public function destroy(Prescription $prescription)
     {
         //
+        $prescription->delete();
+        $message='Prescription deleted successfully';
+        return response(compact('message'),200);
     }
 }

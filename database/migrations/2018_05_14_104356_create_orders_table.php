@@ -15,7 +15,18 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('buyer_id')->unsigned();
+            $table->integer('doctor_id')->unsigned();
+            $table->integer('drug_id')->unsigned();
+            $table->integer('quantity')->unsigned();
+            $table->softDeletes();
             $table->timestamps();
+        });
+        Schema::table('orders', function($table) {
+            $table->foreign('buyer_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('doctor_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('drug_id')->references('id')->on('drugs')->onDelete('cascade');
+
         });
     }
 

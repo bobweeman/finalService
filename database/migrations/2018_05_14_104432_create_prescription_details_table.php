@@ -15,7 +15,18 @@ class CreatePrescriptionDetailsTable extends Migration
     {
         Schema::create('prescription_details', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('prescription_id')->unsigned();
+            $table->integer('drug_id')->unsigned();
+            $table->string('dosage');
+            $table->string('quantity');
+            $table->string('qr_code_url');
             $table->timestamps();
+        });
+
+        Schema::table('prescription_details', function($table) {
+            $table->foreign('drug_id')->references('id')->on('drugs')->onDelete('cascade');
+            $table->foreign('prescription_id')->references('id')->on('prescriptions')->onDelete('cascade');
+
         });
     }
 

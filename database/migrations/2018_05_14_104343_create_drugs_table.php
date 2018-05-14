@@ -15,7 +15,16 @@ class CreateDrugsTable extends Migration
     {
         Schema::create('drugs', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->integer('drug_composition_id')->unsigned();
+            $table->integer('drug_category_id')->unsigned();
+            $table->softDeletes();
             $table->timestamps();
+        });
+        Schema::table('drugs', function($table) {
+            $table->foreign('drug_composition_id')->references('id')->on('drug_compositions')->onDelete('cascade');
+            $table->foreign('drug_category_id')->references('id')->on('drug_categories')->onDelete('cascade');
+
         });
     }
 

@@ -15,7 +15,17 @@ class CreatePharmaciesTable extends Migration
     {
         Schema::create('pharmacies', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('owner_id')->unsigned();
+            $table->string('name',60);
+            $table->string('image_url',60);
+            $table->string('longitude');
+            $table->string('latitude');
+            $table->softDeletes();
+
             $table->timestamps();
+        });
+        Schema::table('pharmacies', function($table) {
+            $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

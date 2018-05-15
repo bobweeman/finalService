@@ -97,4 +97,14 @@ class PharmacyController extends Controller
         $message='Pharmacy deleted successfully';
         return response(compact('message'),200);
     }
+
+    public function checkShop(Request $request){
+        $count=Pharmacy::where('owner_id',$request->user_id)->count();
+        return response(compact('count'),200);
+    }
+
+    public function myPharmacy(Request $request){
+        $shop=Pharmacy::where('owner_id',$request->user_id)->first();
+        return response(compact('shop'),200);
+    }
 }

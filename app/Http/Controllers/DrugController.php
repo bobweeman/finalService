@@ -15,8 +15,8 @@ class DrugController extends Controller
     public function index()
     {
         //
-        $drugs = Drug::with('category','composition')->orderBy('name','asc')->get();
-        return response(compact('drug_composition'),200);
+        $drugs = Drug::with('category')->orderBy('name','asc')->get();
+        return response(compact('drugs'),200);
     }
 
     /**

@@ -17,12 +17,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 Route::resource('pharmacies','PharmacyController');
 Route::resource('drugs','DrugController');
-Route::resource('categories','CategoryController');
+Route::resource('categories','DrugCategoryController');
 Route::resource('drug_compositions','DrugCompositionController');
-Route::resource('orders','OrdersController');
-Route::resource('prescriptions','PrescriptionsController');
-Route::resource('prescription_details','PrescriptionDetailsController');
+Route::resource('orders','OrderController');
+Route::resource('prescriptions','PrescriptionController');
+Route::resource('prescription_details','PrescriptionDetailController');
+Route::post('access_level','UserController@accessLevel');
+Route::post('check_shop','PharmacyController@checkShop');
+Route::post('my_pharmacy','PharmacyController@myPharmacy');
 
+Route::resource('user_registration','UserController');

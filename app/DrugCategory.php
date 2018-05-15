@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class DrugCategory extends Model
 {
+
+
+    protected $fillable=[
+      'name'
+    ];
     //
         use SoftDeletes;
 

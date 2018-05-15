@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Drug extends Model
 {
+
+    protected $fillable=[
+      'name','composition','drug_category_id'
+    ];
     //
     use SoftDeletes;
 
@@ -14,11 +18,7 @@ class Drug extends Model
 
 
     public function category(){
-        return $this->hasOne(DrugCategory::class);
-    }
-
-    public function composition(){
-        return $this->hasOne(DrugComposition::class);
+        return $this->hasOne(DrugCategory::class,'id','drug_category_id');
     }
 
 

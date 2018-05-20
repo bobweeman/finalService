@@ -41,7 +41,8 @@ class PharmacyController extends Controller
     {
         //check if image is available
         if($request->has('logo')){
-            $image      = $request->file('logo');
+            $image      = Image::make(file_get_contents($request->base64_image));
+
             $fileName   = time() . '.' . $image->getClientOriginalExtension();
             $logo = $fileName;
             $img = Image::make($image->getRealPath());

@@ -41,20 +41,13 @@ class PharmacyController extends Controller
     {
         //check if image is available
         if($request->has('logo')){
-            $data = base64_decode($request->logo);
 
-            $image      = $data;
-            $fileName   = time() . '.' . $image->getClientOriginalExtension();
-            $logo = $fileName;
-            $img = Image::make($image->getRealPath());
-            $img->resize(120, 120, function ($constraint) {
-                $constraint->aspectRatio();
-            });
-
-            $img->stream(); // <-- Key point
-
-            //dd();
-            Storage::disk('local')->put('images/pharmacies'.'/'.$fileName, $img, 'public');
+            $image = $request->logo;  // your base64 encoded
+            $image = str_replace('data:image/png;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
+            $imageName = str_random(10).'.'.'png';
+            $logo=$imageName;
+            Storage::disk('local')->put('images/pharmacies'.'/'.$imageName, base64_decode($image), 'public');
         }
 
         $data = new Pharmacy();

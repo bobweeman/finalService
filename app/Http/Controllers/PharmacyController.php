@@ -41,8 +41,9 @@ class PharmacyController extends Controller
     {
         //check if image is available
         if($request->has('logo')){
-            $image      = Image::make(file_get_contents($request->base64_image));
+            $data = base64_decode($request);
 
+            $image      = $data;
             $fileName   = time() . '.' . $image->getClientOriginalExtension();
             $logo = $fileName;
             $img = Image::make($image->getRealPath());
@@ -61,7 +62,6 @@ class PharmacyController extends Controller
         $data->logo=$logo;
         $data->latitude=$request->latitude;
         $data->longitude=$request->longitude;
-        $data->save();
         $message='Pharmacy created successfully';
         return response(compact('message'),200);
 

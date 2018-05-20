@@ -55,6 +55,7 @@ class PharmacyController extends Controller
         $data->logo=$logo;
         $data->latitude=$request->latitude;
         $data->longitude=$request->longitude;
+        $data->save();
         $message='Pharmacy created successfully';
         return response(compact('message'),200);
 

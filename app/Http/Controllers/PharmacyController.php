@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Pharmacy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Image;
 
 class PharmacyController extends Controller
 {
@@ -37,8 +39,28 @@ class PharmacyController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        Pharmacy::create($request->all());
+        //check if image is available
+        if($request->has('logo')){
+            $image      = $request->file('logo');
+            $fileName   = time() . '.' . $image->getClientOriginalExtension();
+            $logo = $fileName;
+            $img = Image::make($image->getRealPath());
+            $img->resize(120, 120, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            $img->stream(); // <-- Key point
+
+            //dd();
+            Storage::disk('local')->put('images/pharmacies'.'/'.$fileName, $img, 'public');
+        }
+
+        $data = new Pharmacy();
+        $data->name=$request->name;
+        $data->logo=$logo;
+        $data->latitude=$request->latitude;
+        $data->longitude=$request->longitude;
+        $data->save();
         $message='Pharmacy created successfully';
         return response(compact('message'),200);
 

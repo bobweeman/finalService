@@ -52,7 +52,8 @@ class PharmacyController extends Controller
 
         $data = new Pharmacy();
         $data->name=$request->name;
-        $data->logo=$logo;
+        $data->owner_id=$request->owner_id;
+        $data->image_url=$logo;
         $data->latitude=$request->latitude;
         $data->longitude=$request->longitude;
         $data->save();

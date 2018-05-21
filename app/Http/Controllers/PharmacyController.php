@@ -117,7 +117,7 @@ class PharmacyController extends Controller
     }
 
     public function checkShop(Request $request){
-        $count=Pharmacy::where('owner_id',$request->user_id)->count();
+        $count=Pharmacy::where('owner_id',$request->id)->count();
         return response(compact('count'),200);
     }
 

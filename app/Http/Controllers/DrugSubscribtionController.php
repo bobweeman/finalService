@@ -73,6 +73,7 @@ class DrugSubscribtionController extends Controller
     public function update(Request $request, DrugSubscribtion $drugSubscribtion)
     {
         //
+        return response(compact('drugSubscribtion'),200);
     }
 
     /**

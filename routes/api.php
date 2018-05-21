@@ -24,6 +24,7 @@ Route::resource('drug_compositions','DrugCompositionController');
 Route::resource('orders','OrderController');
 Route::resource('prescriptions','PrescriptionController');
 Route::resource('prescription_details','PrescriptionDetailController');
+Route::resource('drug_subscribtions','DrugSubscribtionController');
 Route::post('access_level','UserController@accessLevel');
 Route::post('check_shop','PharmacyController@checkShop');
 Route::post('my_pharmacy','PharmacyController@myPharmacy');

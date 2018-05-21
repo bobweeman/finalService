@@ -74,7 +74,7 @@ class DrugSubscribtionController extends Controller
     {
         //
         $drugSubscribtion->number +$request->number;
-        $drugSubscribtion->update();
+        $drugSubscribtion->save();
         $message="Stock updated";
         return response(compact('message'),200);
     }

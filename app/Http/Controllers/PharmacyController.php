@@ -122,7 +122,7 @@ class PharmacyController extends Controller
     }
 
     public function myPharmacy(Request $request){
-        $shop=Pharmacy::where('owner_id',$request->id)->first();
+        $shop=Pharmacy::with('owner')->where('owner_id',$request->id)->first();
         return response(compact('shop'),200);
     }
 }

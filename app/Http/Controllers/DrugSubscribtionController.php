@@ -88,7 +88,7 @@ class DrugSubscribtionController extends Controller
 
 
     public function shopDrugs(Request $request){
-        $drugs = DrugSubscribtion::with('drugs')->where('pharmacy_id',$request->pharmacy_id)->get();
+        $drugs = DrugSubscribtion::with('drugs.category')->where('pharmacy_id',$request->pharmacy_id)->get();
         return response(compact('drugs'),200);
     }
 }

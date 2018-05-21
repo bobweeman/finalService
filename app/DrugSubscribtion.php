@@ -13,7 +13,7 @@ class DrugSubscribtion extends Model
 
 
     public function drugs(){
-        return $this->hasOne(Drug::class);
+        return $this->hasOne(Drug::class,'id','drug_id');
     }
 
 

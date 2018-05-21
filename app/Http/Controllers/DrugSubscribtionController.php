@@ -73,7 +73,9 @@ class DrugSubscribtionController extends Controller
     public function update(Request $request, DrugSubscribtion $drugSubscribtion)
     {
         //
-        return response(compact('drugSubscribtion'),200);
+        $drugSubscribtion->update($request->all());
+        $message="Stock updated";
+        return response(compact('message'),200);
     }
 
     /**

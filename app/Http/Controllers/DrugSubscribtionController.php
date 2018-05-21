@@ -73,7 +73,7 @@ class DrugSubscribtionController extends Controller
     public function update(Request $request, DrugSubscribtion $drugSubscribtion)
     {
         //
-        $drugSubscribtion->number +$request->number;
+        $drugSubscribtion->increment('number',$request->number);
         $drugSubscribtion->save();
         $message="Stock updated";
         return response(compact('message'),200);

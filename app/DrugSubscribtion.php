@@ -12,4 +12,9 @@ class DrugSubscribtion extends Model
     ];
 
 
+    public function drugs(){
+        return $this->hasMany(Drug::class,'drug_id','id');
+    }
+
+
 }

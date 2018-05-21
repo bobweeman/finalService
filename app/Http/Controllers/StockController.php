@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\DrugSubscribtion;
+use App\Stock;
 use Illuminate\Http\Request;
 
-class DrugSubscribtionController extends Controller
+class StockController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,18 +36,15 @@ class DrugSubscribtionController extends Controller
     public function store(Request $request)
     {
         //
-        DrugSubscribtion::create($request->all());
-        $message = "Drug successfully added";
-        return response(compact('message'),200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\DrugSubscribtion  $drugSubscribtion
+     * @param  \App\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function show(DrugSubscribtion $drugSubscribtion)
+    public function show(Stock $stock)
     {
         //
     }
@@ -55,10 +52,10 @@ class DrugSubscribtionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\DrugSubscribtion  $drugSubscribtion
+     * @param  \App\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function edit(DrugSubscribtion $drugSubscribtion)
+    public function edit(Stock $stock)
     {
         //
     }
@@ -67,10 +64,10 @@ class DrugSubscribtionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\DrugSubscribtion  $drugSubscribtion
+     * @param  \App\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DrugSubscribtion $drugSubscribtion)
+    public function update(Request $request, Stock $stock)
     {
         //
     }
@@ -78,17 +75,15 @@ class DrugSubscribtionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\DrugSubscribtion  $drugSubscribtion
+     * @param  \App\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DrugSubscribtion $drugSubscribtion)
+    public function destroy(Stock $stock)
     {
         //
     }
 
+    public function getStock(Request $request){
 
-    public function shopDrugs(Request $request){
-        $drugs = DrugSubscribtion::with('drugs')->where('pharmacy_id',$request->pharmacy_id)->get();
-        return response(compact('drugs'),200);
     }
 }

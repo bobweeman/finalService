@@ -25,8 +25,10 @@ Route::resource('orders','OrderController');
 Route::resource('prescriptions','PrescriptionController');
 Route::resource('prescription_details','PrescriptionDetailController');
 Route::resource('drug_subscribtions','DrugSubscribtionController');
+Route::resource('stock','StockController');
 Route::post('access_level','UserController@accessLevel');
 Route::post('check_shop','PharmacyController@checkShop');
 Route::post('my_pharmacy','PharmacyController@myPharmacy');
+Route::post('shop_drugs','DrugSubscribtionController@shopDrugs');
 
 Route::resource('user_registration','UserController');

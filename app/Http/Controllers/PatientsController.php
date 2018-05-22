@@ -26,7 +26,7 @@ class PatientsController extends Controller
     public function store(Request $request)
     {
         //
-        $patients = User::where('name','LIKE%',$request->name)->get();
+        $patients = User::where('name','LIKE',$request->name.'%')->get();
         return response(compact('patients'),200);
     }
 

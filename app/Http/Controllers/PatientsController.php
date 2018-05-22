@@ -37,7 +37,7 @@ class PatientsController extends Controller
     public function show($id)
     {
         //
-        $patients = User::where('access_level',3)->get();
+        $patients = User::where('name',$id)->get();
         return response(compact('patients'),200);
     }
 

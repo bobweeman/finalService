@@ -26,6 +26,8 @@ class PatientsController extends Controller
     public function store(Request $request)
     {
         //
+        $patients = User::where('name',$request->name)->get();
+        return response(compact('patients'),200);
     }
 
     /**
@@ -37,8 +39,7 @@ class PatientsController extends Controller
     public function show($id)
     {
         //
-        $patients = User::where('name',$id)->get();
-        return response(compact('id'),200);
+
     }
 
     /**

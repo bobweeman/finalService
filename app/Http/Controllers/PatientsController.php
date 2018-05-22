@@ -27,6 +27,7 @@ class PatientsController extends Controller
     {
         //
         $patients = User::where('name',$request->name)->get();
+        $patients = $request->all();
         return response(compact('patients'),200);
     }
 

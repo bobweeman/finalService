@@ -38,7 +38,7 @@ class PatientsController extends Controller
     {
         //
         $patients = User::where('name',$id)->get();
-        return response(compact('patients'),200);
+        return response(compact('id'),200);
     }
 
     /**

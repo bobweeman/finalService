@@ -97,4 +97,9 @@ class DrugController extends Controller
         $message="Drug deleted successfully";
         return response(compact('message'),200);
     }
+
+    public function searchDrugs(Request $request){
+        $drugs = Drug::where('name','LIKE',$request->name.'%')->get();
+        return response(compact('drugs'),200);
+    }
 }

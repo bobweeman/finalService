@@ -31,5 +31,6 @@ Route::post('access_level','UserController@accessLevel');
 Route::post('check_shop','PharmacyController@checkShop');
 Route::post('my_pharmacy','PharmacyController@myPharmacy');
 Route::post('shop_drugs','DrugSubscribtionController@shopDrugs');
+Route::post('search_drugs','DrugController@searchDrugs');
 
 Route::resource('user_registration','UserController');

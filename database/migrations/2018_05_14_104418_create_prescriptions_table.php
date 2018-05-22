@@ -17,7 +17,7 @@ class CreatePrescriptionsTable extends Migration
             $table->increments('id');
             $table->integer('doctor_id')->unsigned();
             $table->integer('patient_id')->unsigned();
-            $table->boolean('bought');
+            $table->boolean('diagnosis');
 
             $table->softDeletes();
             $table->timestamps();

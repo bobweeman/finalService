@@ -40,16 +40,18 @@ class PrescriptionController extends Controller
     public function store(Request $request)
     {
         //
-        $random = $request->drug_id.$request->precription_id."pharmcode_qr".rand(1,100000).date('m').'png';
+        $imageName = "pharmcode_qr".str_random(10).'.'.'png';
+        $image=QRCode::text($imageName)->png();
+        Storage::disk('local')->put('images/qrcodes'.'/'.$imageName, base64_decode($image), 'public');
 
-        Storage::disk('local')->put('images/qrcodes'.'/'.$random, QRCode::text($random)->png(), 'public');
+
 
 //        $slip= Prescription::create($request->all());
         $data = new Prescription();
         $data->doctor_id=$request->doctor_id;
         $data->patient_id=$request->patient_id;
         $data->diagnosis=$request->diagnosis;
-        $data->qr_code_url=$random;
+        $data->qr_code_url=$imageName;
         $data->save();
         $slip=$data->id;
         $message='Prescription created successfully';

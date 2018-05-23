@@ -50,7 +50,7 @@ class PrescriptionController extends Controller
         $slip->doctor_id=$request->doctor_id;
         $slip->patient_id=$request->patient_id;
         $slip->diagnosis=$request->diagnosis;
-        $slip->qr_code_url=$random;
+        $slip->qr_code_url=$random.'png';
         $slip->save();
         $message='Prescription created successfully';
         return response(compact('message','slip'),200);

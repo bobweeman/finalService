@@ -10,6 +10,9 @@ class Prescription extends Model
     //
     use SoftDeletes;
 
+    protected $fillable=[
+        'doctor_id','patient_id','diagnosis'
+    ];
 
 //    relationships
     public function details(){

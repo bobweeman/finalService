@@ -16,6 +16,6 @@ class Prescription extends Model
 
 //    relationships
     public function details(){
-        return $this->hasOne(PrescriptionDetail::class);
+        return $this->hasMany(PrescriptionDetail::class);
     }
 }

@@ -30,6 +30,7 @@ Route::resource('patients','PatientsController');
 Route::post('access_level','UserController@accessLevel');
 Route::post('check_shop','PharmacyController@checkShop');
 Route::post('my_pharmacy','PharmacyController@myPharmacy');
+Route::post('my_diagnosis','PrescriptionController@myDiagnosis');
 Route::post('shop_drugs','DrugSubscribtionController@shopDrugs');
 Route::post('search_drugs','DrugController@searchDrugs');
 

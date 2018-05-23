@@ -114,4 +114,10 @@ class PrescriptionController extends Controller
         $message='Prescription deleted successfully';
         return response(compact('message'),200);
     }
+
+    public function myDiagnosis(Request $request){
+
+        $data = Prescription::withCount('details')->where('patient_id',$request->id)->get();
+        return response(compact('data'),200);
+    }
 }

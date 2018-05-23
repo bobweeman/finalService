@@ -41,11 +41,8 @@ class PrescriptionController extends Controller
     {
         //
         $imageName = "pharmcode_qr".str_random(10).'.png';
-        $image=QRCode::text($imageName)->png();
-        QRCode::setOutfile(
-            Storage::disk('local')->put('public/images/qrcodes'.'/'.$imageName, $image, 'public')
-        );
-
+//        $image=QRCode::text($imageName)->png();
+        Storage::disk('local')->put('public/images/qrcodes'.'/'.$imageName, QRCode::text($imageName)->png(), 'public');
 
 
 

@@ -52,8 +52,7 @@ class PrescriptionController extends Controller
         $data->qr_code_url=$random.'.png';
         $data->save();
         $slip=$data->id;
-        $message='Prescription created successfully';
-        return response(compact('slip'),200);
+        return $slip;
     }
 
     /**

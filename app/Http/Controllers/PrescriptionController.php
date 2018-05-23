@@ -117,7 +117,7 @@ class PrescriptionController extends Controller
 
     public function myDiagnosis(Request $request){
 
-        $data = Prescription::withCount('details')->where('patient_id',$request->id)->get();
+        $data = Prescription::with('doctor','patient')->withCount('details')->where('patient_id',$request->id)->get();
         return response(compact('data'),200);
     }
 }

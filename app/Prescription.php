@@ -18,4 +18,13 @@ class Prescription extends Model
     public function details(){
         return $this->hasMany(PrescriptionDetail::class);
     }
+
+    public function doctor(){
+        return $this->hasOne(User::class,'id','doctor_id');
+    }
+    public function patient(){
+        return $this->hasOne(User::class,'id','patient_id');
+    }
+
+
 }

@@ -120,4 +120,8 @@ class PrescriptionController extends Controller
         $data = Prescription::with('doctor','patient')->withCount('details')->where('patient_id',$request->id)->get();
         return response(compact('data'),200);
     }
+    public function my_qr(Request $request){
+
+        return response(Storage::disk('local')->get('images/qrcodes/'.$request->id), 200)->header('Content-Type', 'image/png');
+    }
 }

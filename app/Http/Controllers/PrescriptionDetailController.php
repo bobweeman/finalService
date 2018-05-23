@@ -39,8 +39,10 @@ class PrescriptionDetailController extends Controller
     public function store(Request $request)
     {
         //
+
+
         PrescriptionDetail::create($request->all());
-        $message="Prescription created successfully";
+        $message="Prescription details created successfully";
         return response(compact('message'),200);
     }
 

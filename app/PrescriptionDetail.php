@@ -11,7 +11,9 @@ class PrescriptionDetail extends Model
     //
     use SoftDeletes;
 
-
+    protected $fillable=[
+        'prescription_id','drug_id','dosage','quantity'
+    ];
 //    relationships
     public function details(){
         return $this->belongsTo(Prescription::class);

@@ -9,7 +9,7 @@ class PrescriptionDetail extends Model
 {
     //
     //
-    use SoftDeletes;
+//    use SoftDeletes;
 
     protected $fillable=[
         'prescription_id','drug_id','dosage','quantity'

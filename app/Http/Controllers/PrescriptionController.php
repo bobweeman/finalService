@@ -53,7 +53,7 @@ class PrescriptionController extends Controller
         $data->doctor_id=$request->doctor_id;
         $data->patient_id=$request->patient_id;
         $data->diagnosis=$request->diagnosis;
-        $data->qr_code_url=$imageName;
+        $data->qr_code_url=$imageName.'png';
         $data->save();
         $slip=$data->id;
         $message='Prescription created successfully';

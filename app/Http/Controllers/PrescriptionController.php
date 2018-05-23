@@ -40,9 +40,11 @@ class PrescriptionController extends Controller
     public function store(Request $request)
     {
         //
-        $imageName = "pharmcode_qr".str_random(10).'.png';
-        $image=QRCode::text($imageName)->png();
-        Storage::disk('local')->put('public/images/qrcodes'.'/'.$imageName, $image, 'public');
+        $imageName = "pharmcode_qr".str_random(10);
+        \SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->size(400)->generate($imageName, '../public/'.$imageName.'.png');
+
+//        $image=QRCode::text($imageName)->png();
+//        Storage::disk('local')->put('public/images/qrcodes'.'/'.$imageName, $image, 'public');
 
 
 

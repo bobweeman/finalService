@@ -121,7 +121,7 @@ class PrescriptionController extends Controller
         return response(compact('data'),200);
     }
     public function my_qr(Request $request){
-
-        return response(Storage::disk('local')->get('images/qrcodes/'.$request->id), 200)->header('Content-Type', 'image/png');
+        $data =Storage::disk('local')->get('images/qrcodes/'.$request->id);
+        return response(compact('data'),200);
     }
 }

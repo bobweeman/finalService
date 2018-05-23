@@ -38,9 +38,9 @@ class PrescriptionController extends Controller
     public function store(Request $request)
     {
         //
-        Prescription::create($request->all());
+        $slip= Prescription::create($request->all());
         $message='Prescription created successfully';
-        return response(compact('message'),200);
+        return response(compact('message','slip'),200);
     }
 
     /**

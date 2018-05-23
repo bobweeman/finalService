@@ -17,5 +17,7 @@ Route::get('/', function () {
 
 Route::get('qr_code', function ()
 {
-    return \LaravelQRCode\Facades\QRCode::text('QR Code Generator for Laravel!')->png();
+    $img = Image::make(\LaravelQRCode\Facades\QRCode::text('QR Code Generator for Laravel!')->png())->resize(320, 240);
+
+    return response()->download($img);
 });

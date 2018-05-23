@@ -54,7 +54,7 @@ class PrescriptionController extends Controller
         $data->save();
         $slip=$data->id;
         $message='Prescription created successfully';
-        return response(compact('message','slip'),200);
+        return response(compact('slip'),200);
     }
 
     /**

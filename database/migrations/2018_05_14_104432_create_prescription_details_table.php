@@ -19,7 +19,6 @@ class CreatePrescriptionDetailsTable extends Migration
             $table->integer('drug_id')->unsigned();
             $table->string('dosage');
             $table->string('quantity');
-            $table->string('qr_code_url');
             $table->timestamps();
         });
 

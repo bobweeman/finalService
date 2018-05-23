@@ -18,6 +18,7 @@ class CreatePrescriptionsTable extends Migration
             $table->integer('doctor_id')->unsigned();
             $table->integer('patient_id')->unsigned();
             $table->text('diagnosis');
+            $table->string('qr_code_url');
 
             $table->softDeletes();
             $table->timestamps();

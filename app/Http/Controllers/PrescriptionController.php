@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Prescription;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use LaravelQRCode\Facades\QRCode;
 
 class PrescriptionController extends Controller
 {
@@ -38,7 +40,18 @@ class PrescriptionController extends Controller
     public function store(Request $request)
     {
         //
-        $slip= Prescription::create($request->all());
+        $random = $request->drug_id.$request->precription_id."pharmcode_qr".rand(1,100000).date('m');
+
+        $qr=QRCode::text($random)->png();
+        Storage::disk('local')->put('images/qrcodes'.'/'.$random.'png', $qr, 'public');
+
+//        $slip= Prescription::create($request->all());
+        $slip = new Prescription();
+        $slip->doctor_id=$request->doctor_id;
+        $slip->patient_id=$request->patient_id;
+        $slip->diagnosis=$request->diagnosis;
+        $slip->qr_code_url=$request->qr_code_url;
+        $slip->save();
         $message='Prescription created successfully';
         return response(compact('message','slip'),200);
     }

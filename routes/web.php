@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('qr_code', function ()
+{
+    return \LaravelQRCode\Facades\QRCode::text('QR Code Generator for Laravel!')->png();
+});

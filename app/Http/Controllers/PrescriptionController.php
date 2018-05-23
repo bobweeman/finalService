@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Prescription;
-use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use LaravelQRCode\Facades\QRCode;
@@ -42,8 +41,8 @@ class PrescriptionController extends Controller
     {
         //
         $imageName = "pharmcode_qr".str_random(10).'.png';
-//        $image=QRCode::text($imageName)->png();
-        Storage::disk('local')->putFileAs('public/images/qrcodes'.'/'.$imageName, new File(QRCode::text($imageName)->png()), '$imageName');
+        $image=QRCode::text($imageName)->png();
+        Storage::disk('local')->put('public/images/qrcodes'.'/'.$imageName, $image, 'public');
 
 
 

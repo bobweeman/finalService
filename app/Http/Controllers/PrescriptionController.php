@@ -46,12 +46,13 @@ class PrescriptionController extends Controller
         Storage::disk('local')->put('images/qrcodes'.'/'.$random.'.png', $qr, 'public');
 
 //        $slip= Prescription::create($request->all());
-        $slip = new Prescription();
-        $slip->doctor_id=$request->doctor_id;
-        $slip->patient_id=$request->patient_id;
-        $slip->diagnosis=$request->diagnosis;
-        $slip->qr_code_url=$random.'png';
-        $slip->save();
+        $data = new Prescription();
+        $data->doctor_id=$request->doctor_id;
+        $data->patient_id=$request->patient_id;
+        $data->diagnosis=$request->diagnosis;
+        $data->qr_code_url=$random.'.png';
+        $data->save();
+        $slip=$data->id;
         $message='Prescription created successfully';
         return response(compact('message','slip'),200);
     }

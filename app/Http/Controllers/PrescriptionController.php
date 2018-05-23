@@ -42,8 +42,7 @@ class PrescriptionController extends Controller
         //
         $random = $request->drug_id.$request->precription_id."pharmcode_qr".rand(1,100000).date('m');
 
-        $qr=QRCode::text($random)->png();
-        Storage::disk('local')->put('images/qrcodes'.'/'.$random.'.png', $qr, 'public');
+        Storage::disk('local')->put('images/qrcodes'.'/'.$random.'.png', QRCode::text($random)->png(), 'public');
 
 //        $slip= Prescription::create($request->all());
         $data = new Prescription();

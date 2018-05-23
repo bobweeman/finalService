@@ -44,7 +44,7 @@ class PrescriptionController extends Controller
         $img= \SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->size(400)->generate($imageName);
 
 //        $image=QRCode::text($imageName)->png();
-        Storage::disk('local')->put('public/images/qrcodes'.'/'.$imageName, $img, 'public');
+        Storage::disk('local')->put('public/images/qrcodes'.'/'.$imageName.'.png', $img, 'public');
 
 
 
@@ -53,7 +53,7 @@ class PrescriptionController extends Controller
         $data->doctor_id=$request->doctor_id;
         $data->patient_id=$request->patient_id;
         $data->diagnosis=$request->diagnosis;
-        $data->qr_code_url=$imageName.'png';
+        $data->qr_code_url=$imageName.'.png';
         $data->save();
         $slip=$data->id;
         $message='Prescription created successfully';

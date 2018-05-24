@@ -127,7 +127,7 @@ class PrescriptionController extends Controller
         return response(compact('data'), 200)->header('Content-Type', 'image/png');
     }
     public function patientDrugs(Request $request){
-        $drugs= Prescription::with('details.drugs')->where('qr_code_url',$request->qr_code_url)->first();
+        $drugs= Prescription::with('details.drugs','doctor','patient','details')->where('qr_code_url',$request->qr_code_url)->first();
         return response(compact('drugs'),200);
 
     }

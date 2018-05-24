@@ -34,5 +34,6 @@ Route::post('my_diagnosis','PrescriptionController@myDiagnosis');
 Route::post('my_qr','PrescriptionController@my_qr');
 Route::post('shop_drugs','DrugSubscribtionController@shopDrugs');
 Route::post('search_drugs','DrugController@searchDrugs');
+Route::post('patient_drugs','PrescriptionController@patientDrugs');
 
 Route::resource('user_registration','UserController');

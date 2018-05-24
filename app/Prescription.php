@@ -27,4 +27,6 @@ class Prescription extends Model
     }
 
 
+
+
 }

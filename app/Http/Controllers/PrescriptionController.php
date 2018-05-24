@@ -126,4 +126,9 @@ class PrescriptionController extends Controller
         $data =Storage::disk('local')->get('storage/qrcodes/'.$request->id);
         return response(compact('data'), 200)->header('Content-Type', 'image/png');
     }
+    public function patientDrugs(Request $request){
+        $drugs= Prescription::with('details.drugs')->where('qr_code_url',$request->qr_code_url)->first();
+        return response(compact('drugs'),200);
+
+    }
 }

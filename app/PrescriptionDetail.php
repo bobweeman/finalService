@@ -18,4 +18,8 @@ class PrescriptionDetail extends Model
     public function details(){
         return $this->belongsTo(Prescription::class);
     }
+
+    public function drugs(){
+        return $this->hasOne(Drug::class);
+    }
 }
